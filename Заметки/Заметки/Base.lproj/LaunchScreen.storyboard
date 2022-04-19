@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,9 +24,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="W6V-SX-uCl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="665-Hi-QAc"/>
                             <constraint firstItem="W6V-SX-uCl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="34" id="HUk-OG-vwN"/>
+                            <constraint firstItem="W6V-SX-uCl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDw-pI-b7V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="W6V-SX-uCl" secondAttribute="top" constant="44" id="T51-JZ-fhn"/>
+                            <constraint firstAttribute="bottom" secondItem="W6V-SX-uCl" secondAttribute="bottom" id="hzE-PQ-yyK"/>
                             <constraint firstItem="W6V-SX-uCl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nBY-do-t7c"/>
+                            <constraint firstItem="W6V-SX-uCl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="qcd-m8-IhT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="W6V-SX-uCl" secondAttribute="trailing" id="y0X-6v-xuC"/>
                         </constraints>
                     </view>
@@ -36,7 +41,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="375" height="812"/>
+        <image name="LaunchScreen" width="250" height="541"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

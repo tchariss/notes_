@@ -15,6 +15,8 @@
 		870C393227D8B9E3006B1862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 870C393027D8B9E3006B1862 /* LaunchScreen.storyboard */; };
 		870C393C27D8BF60006B1862 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870C393B27D8BF60006B1862 /* TableViewCell.swift */; };
 		870C393E27D8C8E8006B1862 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870C393D27D8C8E8006B1862 /* DetailViewController.swift */; };
+		87F4F313280EEFC900F9388D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F4F312280EEFC900F9388D /* DataManager.swift */; };
+		87F4F315280EEFE600F9388D /* InfoNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F4F314280EEFE600F9388D /* InfoNotes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		870C393327D8B9E3006B1862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		870C393B27D8BF60006B1862 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		870C393D27D8C8E8006B1862 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		87F4F312280EEFC900F9388D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		87F4F314280EEFE600F9388D /* InfoNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNotes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +66,49 @@
 			children = (
 				870C392527D8B9E2006B1862 /* AppDelegate.swift */,
 				870C392727D8B9E2006B1862 /* SceneDelegate.swift */,
-				870C392927D8B9E2006B1862 /* ViewController.swift */,
-				870C393B27D8BF60006B1862 /* TableViewCell.swift */,
-				870C393D27D8C8E8006B1862 /* DetailViewController.swift */,
+				87F4F311280EEFA500F9388D /* Service */,
+				87F4F310280EEFA000F9388D /* Model */,
+				87AB1D84280DC0C400507A86 /* Main */,
+				87AB1D83280DC0BB00507A86 /* Detail */,
 				870C392B27D8B9E2006B1862 /* Main.storyboard */,
 				870C392E27D8B9E3006B1862 /* Assets.xcassets */,
 				870C393027D8B9E3006B1862 /* LaunchScreen.storyboard */,
 				870C393327D8B9E3006B1862 /* Info.plist */,
 			);
 			path = "Заметки";
+			sourceTree = "<group>";
+		};
+		87AB1D83280DC0BB00507A86 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				870C393D27D8C8E8006B1862 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		87AB1D84280DC0C400507A86 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				870C392927D8B9E2006B1862 /* ViewController.swift */,
+				870C393B27D8BF60006B1862 /* TableViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		87F4F310280EEFA000F9388D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				87F4F314280EEFE600F9388D /* InfoNotes.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		87F4F311280EEFA500F9388D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				87F4F312280EEFC900F9388D /* DataManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F4F315280EEFE600F9388D /* InfoNotes.swift in Sources */,
 				870C392A27D8B9E2006B1862 /* ViewController.swift in Sources */,
+				87F4F313280EEFC900F9388D /* DataManager.swift in Sources */,
 				870C393C27D8BF60006B1862 /* TableViewCell.swift in Sources */,
 				870C393E27D8C8E8006B1862 /* DetailViewController.swift in Sources */,
 				870C392627D8B9E2006B1862 /* AppDelegate.swift in Sources */,
@@ -295,12 +335,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CRJ8BQQURY;
 				INFOPLIST_FILE = "Заметки/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ViktoriaShekhovtsova.-------";
+				PRODUCT_BUNDLE_IDENTIFIER = ViktoriaShekhovtsova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -313,12 +354,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CRJ8BQQURY;
 				INFOPLIST_FILE = "Заметки/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ViktoriaShekhovtsova.-------";
+				PRODUCT_BUNDLE_IDENTIFIER = ViktoriaShekhovtsova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

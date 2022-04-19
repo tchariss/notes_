@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Заметки
 //
-//  Created by Виктория Шеховцова on 3/9/22.
+//  Created by Tchariss on 3/9/22.
 //
 
 import UIKit
@@ -42,6 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        DataManager.manager.setData()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -54,7 +55,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
 
 }
 

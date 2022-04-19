@@ -2,30 +2,17 @@
 //  ViewController.swift
 //  Заметки
 //
-//  Created by Виктория Шеховцова on 3/9/22.
+//  Created by Tchariss on 3/9/22.
 //
 
 import UIKit
 
-struct InfoNotes {
-    var textNotes: String? // Информация внутри заметки
-    let nameNotes: String
-    
-    init(nameNotes: String, textNotes: String?) {
-        self.nameNotes = nameNotes
-        self.textNotes = textNotes
-    }
-}
-
 class ViewController: UIViewController {
+    
     lazy var tableView = UITableView.init(frame: .zero, style: .insetGrouped)
-    lazy var dataSource: [InfoNotes] = [
-        InfoNotes(nameNotes: "Новая заметка", textNotes: "1 - Купить маме цветы\n 2 - запустить стиральную машину \n\n 3 - Сделать задание на swiftbook\n")
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         self.tableView.register(TableViewCell.self, forCellReuseIdentifier: "myCell")
         
@@ -33,7 +20,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        checkNewNotes()
+        manager.getData()
         setupTableView()
         addNavigationBar()
     }
@@ -41,34 +28,12 @@ class ViewController: UIViewController {
     // MARK: - Create NavigationBar
     private func addNavigationBar() {
         self.navigationItem.title = "Все заметки"
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Создать", style: .done, target: self, action: #selector((createNote(_:))))
-    }
-    
-    private func checkNewNotes() {
-        
-//      //   Clear userDefault :
-//        let dictionary = userDefault.dictionaryRepresentation()
-//        dictionary.keys.forEach { key in
-//            userDefault.removeObject(forKey: key)
-//        }
-        
-        guard let strings = userDefault.object(forKey: "myKey") as? [String] else {
-            userDefault.set("1 - Купить маме цветы\n 2 - запустить стиральную машину \n\n 3 - Сделать задание на swiftbook\n", forKey: "Новая заметка")
-            return
-        }
-        
-        for string in strings {
-            arrayNotesName.append(string)
-            dataSource.append(InfoNotes(nameNotes: string, textNotes: userDefault.string(forKey: string)))
-        }
     }
     
     // MARK: - UIAlertController
     @objc private func createNote(_ sender: UIBarButtonItem) {
-        
         let alertController = UIAlertController(title: "Новая заметка", message: nil, preferredStyle: .alert)
-        
         alertController.addTextField { (text) in
             text.placeholder = "Введите имя для новой заметки"
             text.addTarget(self, action: #selector(self.alertChange(_ :)), for: .editingChanged)
@@ -77,17 +42,12 @@ class ViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена", style: .default, handler: { (action: UIAlertAction!) in
             alertController.dismiss(animated: true, completion: nil)
         })
-        
         let continueAction = UIAlertAction(title: "Подтвердить", style: .default) { [self]
             (action) in
-
             guard let name = alertController.textFields?.first?.text else { return }
-            self.dataSource.append(InfoNotes(nameNotes: name, textNotes: nil))
-
-            arrayNotesName.append("\(name)")
-            userDefault.set("", forKey: "\(name)")
-            userDefault.set(arrayNotesName, forKey: "myKey")
             
+            manager.addNote(text: nil, name: name)
+            manager.setData()
             tableView.reloadData()
         }
 
@@ -116,8 +76,8 @@ class ViewController: UIViewController {
         ])
     }
     
-    private var arrayNotesName: [String] = []
     private let userDefault = UserDefaults.standard // хранилище данных UserDefaults
+    private let manager = DataManager.manager
 }
 
 
@@ -131,15 +91,15 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Сколько ячеек в секции
-        dataSource.count
+        manager.dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Создание ячейки
-        let item = dataSource[indexPath.row]
+        let item = manager.dataSource[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! TableViewCell
-        cell.configure(with: item)
+        cell.setLabelText(name: item.name)
         
         return cell
     }
@@ -151,10 +111,10 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let item = dataSource[indexPath.row] // Выбранная ячейка
+        let item = manager.dataSource[indexPath.row] // Выбранная ячейка
         
         let newController = DetailViewController()
-        newController.configure(with: item)
+        newController.setTitleNavigationBar(index: indexPath.row, text: item.text)
         
         self.navigationController?.pushViewController(newController, animated: true)
     }
@@ -165,16 +125,9 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             self.tableView.beginUpdates()
-            let removeItem = self.dataSource.remove(at: indexPath.row)
             
-            if let index = arrayNotesName.firstIndex(where: { $0 == removeItem.nameNotes }) {
-                arrayNotesName.remove(at: index)
-            }
-            
-            userDefault.removeObject(forKey: removeItem.nameNotes)
-            userDefault.set(arrayNotesName, forKey: "myKey")
+            manager.deleteData(index: indexPath.row)
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.endUpdates()

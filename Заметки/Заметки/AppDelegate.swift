@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Заметки
 //
-//  Created by Виктория Шеховцова on 3/9/22.
+//  Created by Tchariss on 3/9/22.
 //
 
 import UIKit

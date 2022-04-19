@@ -2,7 +2,7 @@
 //  TableViewCell.swift
 //  Заметки
 //
-//  Created by Виктория Шеховцова on 3/9/22.
+//  Created by Tchariss on 3/9/22.
 //
 
 import UIKit
@@ -28,8 +28,10 @@ class TableViewCell: UITableViewCell {
         setConstraints()
     }
     
-    func configure(with item: InfoNotes) {
-        label.text = item.nameNotes
+    func setLabelText(name: String?) {
+        if let name = name {
+            label.text = name
+        }
     }
 
     private func setConstraints() {
